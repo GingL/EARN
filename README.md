@@ -24,8 +24,8 @@ This repository will be Pytorch implementation of **Knowledge-guided Adaptively 
 <table>
 <tr><td>
 
-| exp_id | RefCOCO | RefCOCO+ | RefCOCOg|
-|--|--|--|--|
+|  | RefCOCO | RefCOCO+ | RefCOCOg|
+|:--:|:--:|:--:|:--:|
 | mcxtp | 17.46\% | 20.88\% | 43.11\% |
 | scxtp | 21.75\% | 21.66\% | 46.47\% |
 | num   |  653    | 637     |  4233   |
