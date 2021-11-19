@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository will be Pytorch implementation of **Knowledge-guided Adaptively Reconstruction Network for Weakly Supervised Referring Expression Grounding**.
+This repository will be Pytorch implementation of **Knowledge-guided Adaptively Reconstruction Network for Weakly Supervised Referring Expression Grounding**. More detailed codes will be released soon.
 
 
 ## Prerequisites
