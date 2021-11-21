@@ -1,8 +1,8 @@
-# PyTorch Implementation of KARN
+# A Subset of Complex Relationship for Referring Expression Grounding
 
 ## Introduction
 
-This repository will be Pytorch implementation of **Knowledge-guided Adaptively Reconstruction Network for Weakly Supervised Referring Expression Grounding**. More detailed codes will be released soon.
+This repository provide a subset of complex relationship for referring expression grounding task. The subset mainly contains the referring expressions with higher-order or multi-entitiy relationship, which is collected to evaluate the performance of REG model on complex relationship understanding. Relationship reasoning is one of the main challenge in REG, as REG needs to distinguish the target from other objects, usually the same category. 
 
 
 ## Prerequisites
@@ -18,7 +18,28 @@ This repository will be Pytorch implementation of **Knowledge-guided Adaptively 
 
 ## Performance on complex relationship
 1) Examples
+   
+	person __in__ brown jacket __to left of__ guy __in__ blue shirt 
 
+	the guy __beside__ lady __in__ red who is __cutting__ the cake 
+
+	man __in__ hat __on the right__ __next to__ guy in white shirt 
+
+	the boy __behind__ the boy __blowing out__ the candle __on the left__ 
+
+	man __leaning on__ red and white post __with__ tanktop and bandana 
+
+	man __on__ cell phone __closest to__ screen __wearing__ a gray suit glasses 
+
+	the older man __wearing__ hat and glasses __behind__ and __right__ of batter 
+
+	vase __in__ back __on left__ __with__ swirly orange pattern and one flower __in__ it 
+
+	blurred person __in__ crowd __directly right of__ woman __in__ pink shirt __on__ bike 
+
+	man __has__ glasses black suit blue striped tie __next to__ woman __with__ glass and gray suit 
+
+	...	
 
 2) Performance
 <table>
