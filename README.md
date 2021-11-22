@@ -22,27 +22,6 @@ Relationship reasoning is one of the main challenge in REG, as REG needs to dist
 ## Performance on complex relationship
 1) Examples 复杂referring
    
-	person __in__ brown jacket __to left of__ guy __in__ blue shirt 
-
-	the guy __beside__ lady __in__ red who is __cutting__ the cake 
-
-	man __in__ hat __on the right__ __next to__ guy in white shirt 
-
-	the boy __behind__ the boy __blowing out__ the candle __on the left__ 
-
-	man __leaning on__ red and white post __with__ tanktop and bandana 
-
-	man __on__ cell phone __closest to__ screen __wearing__ a gray suit glasses 
-
-	the older man __wearing__ hat and glasses __behind__ and __right__ of batter 
-
-	vase __in__ back __on left__ __with__ swirly orange pattern and one flower __in__ it 
-
-	blurred person __in__ crowd __directly right of__ woman __in__ pink shirt __on__ bike 
-
-	man __has__ glasses black suit blue striped tie __next to__ woman __with__ glass and gray suit 
-
-	...	
 
 
 ![example1](./pics/example.png)
