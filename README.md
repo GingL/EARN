@@ -27,6 +27,7 @@ Follow Step 1 & 2 in Training to prepare the data.
 
 2) Performance
    Here we show the number and its percentage (num) of the expressions with complex relationship, and the accuracy (IoU > 0.5) comparison of the max-context pooling (mcxtp) and soft-context pooling (scxtp). The RefCOCOg dataset has longer queries, so the number of the cases with complex relationship is much higher. From the results, we can see soft-context pooling can performs better on complex relationship reasoning.
+<center>
 <table>
 <tr><td>
 
@@ -38,4 +39,4 @@ Follow Step 1 & 2 in Training to prepare the data.
 
 </td></tr> 
 </table>
-
+</center>
