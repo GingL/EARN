@@ -44,9 +44,11 @@ Relationship reasoning is one of the main challenge in REG, as REG needs to dist
 
 	...	
 
-![example1][./pics/207083_92165.png]
 
-2) Performance
+![example1](./pics/207083_92165.png)
+
+
+1) Performance
    多写一点 介绍num和占比，不同数据集的特点在refcocog上更复杂更挑战
 <table>
 <tr><td>
