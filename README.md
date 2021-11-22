@@ -45,7 +45,7 @@ Relationship reasoning is one of the main challenge in REG, as REG needs to dist
 	...	
 
 
-![example1](./pics/examples.png)
+![example1](./pics/example.png)
 
 
 
