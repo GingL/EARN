@@ -1,8 +1,11 @@
-# A Subset of Complex Relationship for Referring Expression Grounding
+# Complex Relationship Reasoning Evaluation for Referring Expression Grounding
 
 ## Introduction
 
-This repository provide a subset of complex relationship for referring expression grounding task. The subset mainly contains the referring expressions with higher-order or multi-entitiy relationship, which is collected to evaluate the performance of REG model on complex relationship understanding. Relationship reasoning is one of the main challenge in REG, as REG needs to distinguish the target from other objects, usually the same category. 
+This repository provide a validation set to evaluate the complex relationship reasoning for Referring Expression Grounding (REG) task. These data mainly contain the referring expressions with higher-order or multi-entitiy relationship, which is selected from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set. 
+<!-- 先介绍REG，复杂场景下，难点在于关系挖掘，高阶关系更是难点更能体现REG的推理能力 -->
+Relationship reasoning is one of the main challenge in REG, as REG needs to distinguish the target from other objects, usually the same category. 
+<!-- 我们选择了一个多大的验证集来评估reg能力，一些例子在下面 -->
 
 
 ## Prerequisites
@@ -17,7 +20,7 @@ This repository provide a subset of complex relationship for referring expressio
    Follow Step 1 & 2 in Training to prepare the data and features.
 
 ## Performance on complex relationship
-1) Examples
+1) Examples 复杂referring
    
 	person __in__ brown jacket __to left of__ guy __in__ blue shirt 
 
@@ -41,18 +44,22 @@ This repository provide a subset of complex relationship for referring expressio
 
 	...	
 
+![avatar][exp1]
+
 2) Performance
+   多写一点 介绍num和占比，不同数据集的特点在refcocog上更复杂更挑战
 <table>
 <tr><td>
 
 |  | RefCOCO | RefCOCO+ | RefCOCOg|
 |:--:|:--:|:--:|:--:|
+| num   |  653 （12\%）   | 637 (\%)    |  4233 (\%)   |
+|--|--|--|--|
 | mcxtp | 17.46\% | 20.88\% | 43.11\% |
 | scxtp | 21.75\% | 21.66\% | 46.47\% |
-| num   |  653    | 637     |  4233   |
 
 </td></tr> 
 </table>
 
-
+[exp1]:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAEgCAYAAADVKCZpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvhp/UCwAABFdJREFUeJzt1UENACAQwDDAv+fDAx+ypFWw3/bMzAKAmPM7AABeGBgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQJKBAZBkYAAkGRgASQYGQNIFNY4GPMJA43AAAAAASUVORK5CYII=
 
