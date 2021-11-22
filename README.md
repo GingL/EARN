@@ -45,8 +45,8 @@ Relationship reasoning is one of the main challenge in REG, as REG needs to dist
 	...	
 
 
-![example1](./pics/207083_92165.png)
-<center>the person standing in front of the sitting boy on the phone he is wearing black pants and a black shirt</center>
+![example1](./pics/examples.png)
+
 
 
 1) Performance
