@@ -3,8 +3,8 @@
 ## Introduction
 
 This repository provides a validation set to evaluate the complex relationship reasoning for Referring Expression Grounding (REG) task. 
-REG aims to distinguish the target from other objects in an image, usually the same category. Since people tend to use context information to describe a particular object, relationship reasoning is important for REG, which is also the main challenge. Under complicated situation, the relationship can be very difficult for REG model to learn. 
-Hence, we gather the referring expressions with higher-order or multi-entitiy relationship from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set to evaluate the ability of models to reason the complex relationship. You can download the validation set in [cache](cache/prepro/). 
+REG aims to distinguish the target from other objects in an image, usually the same category. Since people tend to use context information to describe a particular object, relationship reasoning is vital for REG, which is also the main challenge. Under the complicated situation, the relationship can be very difficult for the REG model to learn. 
+Hence, we gather the referring expressions with higher-order or multi-entity relationships from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set to evaluate the ability of models to reason the complex relationship. You can download the validation set in [cache](cache/prepro/). 
 
 ## Prerequisites
 
@@ -15,10 +15,10 @@ Hence, we gather the referring expressions with higher-order or multi-entitiy re
 ## Data Prepare
 
 Please refer to [MattNet](https://github.com/lichengunc/MAttNet) to install [mask-faster-rcnn](https://github.com/lichengunc/mask-faster-rcnn), [REFER](https://github.com/lichengunc/refer) and [refer-parser2](https://github.com/lichengunc/refer-parser2).
-Follow Step 1 & 2 in Training to prepare the data.
+Follow Steps 1 & 2 in Training to prepare the data.
 
 ## More Details. 
-1) There show some examples for referring expression with higher-order or multi-entitiy relationship. More examples can be seen in [visualization.ipynb](visualization.ipynb). 
+1) There are some examples for referring expressions with higher-order or multi-entity relationships. More examples can be seen in [visualization.ipynb](visualization.ipynb). 
    
 
 ![example1](./pics/example.png)
@@ -26,7 +26,7 @@ Follow Step 1 & 2 in Training to prepare the data.
 
 
 2) Performance
-   Here we show the number and its percentage (num) of the expressions with complex relationship, and the accuracy (IoU > 0.5) comparison of the max-context pooling (mcxtp) and soft-context pooling (scxtp). The RefCOCOg dataset has longer queries, so the number of the cases with complex relationship is much higher. From the results, we can see soft-context pooling can performs better on complex relationship reasoning.
+   Here we show the number and its percentage (num) of the expressions with complex relationships, and the accuracy (IoU > 0.5) comparison of the max-context pooling (mcxtp) and soft-context pooling (scxtp). The RefCOCOg dataset has longer queries, so the cases with complex relationships are much higher. From the results, we can see soft-context pooling can perform better on complex relational reasoning.
 <center>
 <table>
 <tr><td>
