@@ -23,11 +23,11 @@ Follow Steps 1 & 2 in Training to prepare the data.
    There are some examples for referring expressions with higher-order or multi-entity relationships. More examples can be seen in [visualization.ipynb](visualization.ipynb). 
    
 
-![example1](./pics/example.png)
+![example1](./pics/example.bmp)
 <!-- <center>Some examples of the validation set with complex relationship.</center> -->
 
 
-1) Our Performance.
+12) Our Performance.
    
    Here we show the number and its percentage (num) of the expressions with complex relationships, and the accuracy (IoU > 0.5) comparison of the max-context pooling (mcxtp) and soft-context pooling (scxtp). The RefCOCOg dataset has longer queries, so the cases with complex relationships are much higher. From the results, we can see soft-context pooling can perform better on complex relational reasoning.
 <center>
