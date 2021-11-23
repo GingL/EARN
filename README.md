@@ -23,7 +23,7 @@ Follow Steps 1 & 2 in Training to prepare the data.
    There are some examples for referring expressions with higher-order or multi-entity relationships. More examples can be seen in [visualization.ipynb](visualization.ipynb). 
    
 
-![example1](./pics/example.bmp)
+ ![example1](./pics/example.png)
 <!-- <center>Some examples of the validation set with complex relationship.</center> -->
 
 
