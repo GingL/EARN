@@ -22,7 +22,7 @@ Follow Steps 1 & 2 in Training to prepare the data.
    
 
 ![example1](./pics/example.png)
-<center>Some examples of the validation set with complex relationship.</center>
+<!-- <center>Some examples of the validation set with complex relationship.</center> -->
 
 
 2) Performance
