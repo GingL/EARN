@@ -30,17 +30,20 @@ Download the images from [MSCOCO](http://mscoco.org/dataset/#overview). Prepare 
 
 2) Our performance.
    
-   Here we show the number and its percentage (num) of the expressions with complex relationships, and the accuracy (IoU > 0.5) comparison of the max-context pooling (mcxtp) and soft-context pooling (scxtp). The RefCOCOg dataset has longer queries, so the cases with complex relationships are much higher. From the results, we can see soft-context pooling can perform better on complex relational reasoning.
+   Here we show the number (num) and its percentage (ratio) of the expressions with complex relationships in original validation and test set, and the accuracy (IoU > 0.5) comparison of the max-context pooling (mcxtp) and soft-context pooling (scxtp). The RefCOCOg dataset has longer queries, so the cases with complex relationships are much higher. From the results, we can see soft-context pooling can perform better on complex relational reasoning.
 <center>
 <table>
 <tr><td>
 
 |  | RefCOCO | RefCOCO+ | RefCOCOg|
 |:--:|:--:|:--:|:--:|
-| num   |  653 （~3\%）   | 637 (~3\%)    |  4233 (~44\%)   |
+| num   |  653    | 637     |  4233   |
+| ratio | ~3\%    | ~3\%    |  ~44\%  |
 | mcxtp | 17.46\% | 20.88\% | 43.11\% |
 | scxtp | 21.75\% | 21.66\% | 46.47\% |
 
+<!-- | num   |  653 （~3\%）   | 637 (~3\%)    |  4233 (~44\%)   |
+| num   |  653 （~3\%）   | 637 (~3\%)    |  4233 (~44\%)   | -->
 </td></tr> 
 </table>
 </center>
