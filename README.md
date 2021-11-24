@@ -1,9 +1,9 @@
-# Evaluation for Complex Relationship Reasoning of Referring Expression Grounding
+# Evaluation for Complex Relational Reasoning of Referring Expression Grounding
 
 ## Introduction
 
-This repository provides a validation set to evaluate the complex relationship reasoning for Referring Expression Grounding (REG) task. 
-REG aims to distinguish the target from other objects in an image, usually the same category. Since people tend to use context information to describe a particular object, relationship reasoning is vital for REG, which is also the main challenge. Under the complicated situation, the relationship can be very difficult for the REG model to learn. 
+This repository provides a validation set to evaluate the complex relational reasoning for Referring Expression Grounding (REG) task. 
+REG aims to distinguish the target from other objects in an image, usually the same category. Since people tend to use context information to describe a particular object, relational reasoning is vital for REG, which is also the main challenge. Under the complicated situation, the relationship can be very difficult for the REG model to learn. 
 Hence, we gather the referring expressions with higher-order or multi-entity relationships (mainly based on the length of the referring expression and the number of entities) from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set to evaluate the ability of models to reason the complex relationship. You can download the validation set in [cache](cache/prepro/). 
 
 ## Prerequisites
