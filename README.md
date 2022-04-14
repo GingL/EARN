@@ -1,10 +1,7 @@
-# Evaluation for Complex Relational Reasoning of Referring Expression Grounding
+# This is the PyTorch Implementation of EARN
 
 ## Introduction
-
-This repository provides a validation set to evaluate the complex relational reasoning for Referring Expression Grounding (REG) task. 
-REG aims to distinguish the target from other objects in an image, usually the same category. Since people tend to use context information to describe a particular object, relational reasoning is vital for REG, which is also the main challenge. Under the complicated situation, the relationship can be very difficult for the REG model to learn. 
-Hence, we gather the referring expressions with higher-order or multi-entity relationships (mainly based on the length of the referring expression and the number of entities) from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set to evaluate the ability of models to reason the complex relationship. You can download the validation set in [cache/prepro/](cache/prepro/). 
+This repository is Pytorch implementation of Entity-enhanced Adaptive Reconstruction Network for Weakly Supervised Referring Expression Grounding.
 
 ## Prerequisites
 
@@ -16,8 +13,9 @@ Hence, we gather the referring expressions with higher-order or multi-entity rel
 
 Download the images from [MSCOCO](http://mscoco.org/dataset/#overview). Prepare the refcoco/refcoco+/refcocog annotations following [REFER](https://github.com/lichengunc/refer) API. Follow Steps 1 in [MattNet](https://github.com/lichengunc/MAttNet) training to get the index of training and evaluation data.
 
+## Evaluation for Complex Relational Reasoning of Referring Expression Grounding
+We gather the referring expressions with higher-order or multi-entity relationships (mainly based on the length of the referring expression and the number of entities) from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set to evaluate the ability of models to reason the complex relationship. You can download the validation set in [cache/prepro/](cache/prepro/). 
 
-## More Details
 1) Examples.
    
    There are some examples for referring expressions with higher-order or multi-entity relationships. More examples can be seen in [visualization.ipynb](visualization.ipynb). 
