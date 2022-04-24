@@ -60,11 +60,11 @@ class DataLoader(Loader):
         self.ix_to_att = {ix: wd for wd, ix in self.att_to_ix.items()}
         self.num_atts = len(self.att_to_ix)
         self.att_to_cnt = self.info['att_to_cnt']
-        self.vocab_file = '/home/xuejing_liu/yuki/MattNet/cache/word_embedding/vocabulary_72700.txt'
+        self.vocab_file = 'cache/word_embedding/vocabulary_72700.txt'
         self.UNK_IDENTIFIER = '<unk>'  # <unk> is the word used to identify unknown words
         self.num_vocab = 72704
         self.embed_dim = 300
-        self.embedmat_path = '/home/xuejing_liu/yuki/MattNet/cache/word_embedding/embed_matrix.npy'
+        self.embedmat_path = 'cache/word_embedding/embed_matrix.npy'
         self.embedding_mat = np.load(self.embedmat_path)
 
         # self.use_bert = 1

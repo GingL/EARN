@@ -28,7 +28,7 @@ from tensorboardX import SummaryWriter
 
 def main(args):
     start_time = time.time()
-    RootPath = '/home/xuejing_liu/yuki/MattNet'
+    RootPath = 'path/to/cache'
     opt = vars(args)
     # initialize
     opt['dataset_splitBy'] = opt['dataset'] + '_' + opt['splitBy']

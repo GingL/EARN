@@ -30,8 +30,8 @@ from utils.mask_utils import recover_masks
 from pycocotools import mask as COCOmask
 
 # mrcn dir
-# this_dir = '/home/xuejing_liu/yuki/MattNet/tools/../lib/mrcn'
-mrcn_dir = osp.join('/home/xuejing_liu/yuki/MattNet', 'pyutils', 'mask-faster-rcnn')
+this_dir = osp.dirname(__file__)
+mrcn_dir = osp.join(this_dir, '..', '..', 'pyutils', 'mask-faster-rcnn')
 
 
 def get_imdb_name(imdb_name):
@@ -236,14 +236,14 @@ class Inference:
 
     def box_to_pool5_fc7(self, net_conv, im_info, ori_boxes):
         """
-        Arguments:
-        net_conv (Variable)  : (1, 1024, H, W)
-        im_info (float32)    : [[ih, iw, scale]]
-        ori_boxes (float32)  : (n, 4) [x1y1x2y2]
-        Returns:
-        pool5 (float): (n, 1024)
-        fc7 (float)  : (n, 2048)
-        """
+    Arguments:
+      net_conv (Variable)  : (1, 1024, H, W)
+      im_info (float32)    : [[ih, iw, scale]]
+      ori_boxes (float32)  : (n, 4) [x1y1x2y2]
+    Returns:
+      pool5 (float): (n, 1024)
+      fc7 (float)  : (n, 2048)
+    """
         self.net.eval()
         self.net._mode = 'TEST'
 

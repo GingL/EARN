@@ -34,7 +34,7 @@ def load_model(checkpoint_path, opt):
     return model
 
 def evaluate(params):
-    RootPath = '/home/xuejing_liu/yuki/MattNet'
+    RootPath = 'path/to/cache'
 
     # load mode info
     model_prefix = osp.join('output', params['dataset_splitBy'], params['id'], 'mrcn_cmr_with_st')
@@ -51,10 +51,9 @@ def evaluate(params):
     loader = DataLoader(data_h5=data_h5, data_json=data_json, sub_obj_wds=sub_obj_wds, similarity=similarity, opt=model_opt)
 
     # load refer
-    data_root = '/home/xuejing_liu/yuki/MattNet/data'
+    data_root = 'path/to/data'
     dataset = params['dataset']
     splitBy = params['splitBy']
-    sys.path.insert(0, '/home/xuejing_liu/yuki/MattNet/pyutils/refer')
     from refer import REFER
     refer = REFER(data_root, dataset, splitBy)
 
