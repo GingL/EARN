@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CUDA_VISIBLE_DEVICES=0 python ./tools/trainV2.py \
+CUDA_VISIBLE_DEVICES=0 python ./tools/train.py \
 --dataset refcoco \
 --splitBy unc \
 --exp_id exp_time \

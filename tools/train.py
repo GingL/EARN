@@ -4,7 +4,6 @@ from __future__ import print_function
 
 import os
 import os.path as osp
-import io
 import sys
 import numpy as np
 import json
@@ -15,17 +14,16 @@ from pprint import pprint
 
 # model
 import _init_paths
+from loaders.data_loader import DataLoader
+from layers.model import KARN
+import evals.utils as model_utils
+import evals.eval_easy as eval_utils
+from opt import parse_opt
 
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
 from tensorboardX import SummaryWriter
-
-from loaders.data_loader_end2end import DataLoader
-from layers.modelV2 import KARN
-import evals.utils as model_utils
-import evals.eval_easyV2 as eval_utils
-from opt import parse_opt
 
 
 def main(args):
@@ -63,6 +61,7 @@ def main(args):
 
     ann_feats = osp.join(RootPath, 'cache/feats', opt['dataset_splitBy'], 'mrcn',
                          '%s_%s_%s_ann_feats.h5' % (opt['net_name'], opt['imdb_name'], opt['tag']))
+    loader.loadFeats({'ann': ann_feats})
 
     # set up model
     opt['vocab_size'] = loader.vocab_size
@@ -122,7 +121,6 @@ def main(args):
         T['data'] = time.time() - tic
 
         tic = time.time()
-        
         scores, loss, _, _, _, _, _, _, _, _, _, _= model(Feats['pool5'], Feats['fc7'], Feats['lfeats'], Feats['dif_lfeats'], Feats['cxt_fc7'],
                              Feats['cxt_lfeats'],Feats['dist'], labels, enc_labels, dec_labels, sub_sim, obj_sim, sub_emb, obj_emb, att_labels, select_ixs, att_weights)
 
@@ -195,7 +193,7 @@ def main(args):
         if wrapped:
             epoch += 1
         if iter > opt['max_iters'] and opt['max_iters'] > 0:
-            print(time.time() - start_time)
+            print(time.time()-start_time)
             break
 
 if __name__ == '__main__':

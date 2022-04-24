@@ -15,15 +15,13 @@ import argparse
 
 # model
 import _init_paths
-from layers.model_refclef import KARN
-from loaders.data_loader_refclef import DataLoader
-import evals.eval_easy_refclef as eval_utils
+from layers.model import KARN
+from loaders.data_loader import DataLoader
+import evals.eval_easy as eval_utils
 
 # torch
 import torch
 import torch.nn as nn
-
-
 
 def load_model(checkpoint_path, opt):
     tic = time.time()
@@ -99,7 +97,7 @@ def evaluate(params):
     # print('attribute f1        : %.2f%%' % (overall['f1'] * 100.0))
 
     # save
-    out_dir = osp.join('resultsV2', params['dataset_splitBy'], 'easy')
+    out_dir = osp.join('results', params['dataset_splitBy'], 'easy')
     if not osp.isdir(out_dir):
         os.makedirs(out_dir)
     out_file = osp.join(out_dir, params['id'] + '_' + params['split'] + '.json')
@@ -108,17 +106,17 @@ def evaluate(params):
         json.dump({'predictions': predictions, 'acc': acc}, of)
 
     # write to results.txt
-    f = open('experiments/resultsV2.txt', 'a')
+    f = open('experiments/results.txt', 'a')
     f.write('[%s]: [%s][%s], id[%s]\'s acc is %.2f%%\n' % \
             (params['id'], params['dataset_splitBy'], params['split'], params['id'], acc * 100.0))
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str, default='refclef',
-                        help='dataset name: refclef')
+    parser.add_argument('--dataset', type=str, default='refcoco',
+                        help='dataset name: refclef, refcoco, refcoco+, refcocog')
     parser.add_argument('--splitBy', type=str, default='unc', help='splitBy: unc, google, berkeley')
-    parser.add_argument('--split', type=str, default='val', help='split: testAB or val, etc')
+    parser.add_argument('--split', type=str, default='testA', help='split: testAB or val, etc')
     parser.add_argument('--id', type=str, default='0', help='model id name')
     parser.add_argument('--num_sents', type=int, default=-1,
                         help='how many sentences to use when periodically evaluating the loss? (-1=all)')

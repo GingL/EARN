@@ -93,20 +93,18 @@ def eval_split(loader, model, split, opt):
             tic = time.time()
             # if i ==2:
             #     print('2')
-            scores, loss, sub_idx, max_rel_id, sub_attn, obj_attn, weights, sub_attn_lan, loc_attn_lan, rel_attn_lan, sub_ann_attn, loc_ann_attn, rel_ann_attn = model(pool5, fc7, lfeats, dif_lfeats, 
-            cxt_fc7, cxt_lfeats, dist, label, enc_label, dec_label, sub_sim, obj_sim, 
-            sub_emb, obj_emb, att_label, select_ix, att_weights)
+            scores, loss, sub_idx, sub_attn, obj_attn, weights, sub_attn_lan, loc_attn_lan, rel_attn_lan, sub_ann_attn, loc_ann_attn, rel_ann_attn = model(pool5, fc7, lfeats, dif_lfeats, cxt_fc7,
+                                 cxt_lfeats, dist, label, enc_label, dec_label, sub_sim, obj_sim,
+                                 sub_emb, obj_emb, att_label, select_ix, att_weights)
 
 
             scores = scores.squeeze(0)
             sub_idx = sub_idx.squeeze(0)
             loss = loss.data[0].item()
-            max_rel_id = int(max_rel_id.squeeze(0).cpu().numpy())
-            if obj_sim[0][max_rel_id] == 0:
-                max_rel_id = -1
+
 
             pred_ix = torch.argmax(scores)
-            # if opt['sub_filter_type'] == 'thr':
+
             k = 2
             while sub_idx[pred_ix] == 0:
                 maxk, idx = torch.topk(scores, k)
@@ -138,7 +136,6 @@ def eval_split(loader, model, split, opt):
             entry['sent'] = loader.decode_labels(label.data.cpu().numpy())[0]  # gd-truth sent
             entry['gd_ann_id'] = data['ann_ids'][gd_ix]
             entry['pred_ann_id'] = pred_ann_id
-            entry['rel_ann_id'] = max_rel_id
             entry['pred_score'] = scores.tolist()[pred_ix]
             entry['IoU'] = IoU
             entry['ann_ids'] = ann_ids
@@ -151,6 +148,8 @@ def eval_split(loader, model, split, opt):
             entry['sub_ann_attn'] = sub_ann_attn.tolist()[0]
             entry['loc_ann_attn'] = loc_ann_attn.tolist()[0]
             entry['rel_ann_attn'] = rel_ann_attn.tolist()[0]
+
+
 
             predictions.append(entry)
             toc = time.time()
