@@ -11,8 +11,18 @@ This repository is Pytorch implementation of Entity-enhanced Adaptive Reconstruc
 
 ## Installation
 
-Please refer to [MattNet](https://github.com/lichengunc/MAttNet) to install [mask-faster-rcnn](https://github.com/lichengunc/mask-faster-rcnn), [REFER](https://github.com/lichengunc/refer) and [refer-parser2](https://github.com/lichengunc/refer-parser2).
+1. Please refer to [MattNet](https://github.com/lichengunc/MAttNet) to install [mask-faster-rcnn](https://github.com/lichengunc/mask-faster-rcnn), [REFER](https://github.com/lichengunc/refer) and [refer-parser2](https://github.com/lichengunc/refer-parser2).
 Follow Step 1 & 2 in Training to prepare the data and features.
+
+2. Calculate semantic similarity as supervision infotmation.
+
+* Download [Glove](https://drive.google.com/file/d/1SuKn09iiYlGo0evZIJHkmpXOhLNc5f_s/view?usp=drive_web) word embedding to cache/word_embedding.
+
+* Generate semantic similarity and word embedding file.
+```bash
+python tools/prepro_sub_obj_wds.py --dataset ${DATASET} --splitBy ${SPLITBY}
+python tools/prepro_sim.py --dataset ${DATASET} --splitBy ${SPLITBY}
+```
 
 
 ## Training
@@ -20,7 +30,7 @@ Follow Step 1 & 2 in Training to prepare the data and features.
 Train EARN with ground-truth annotation:
 
 ```bash
-CUDA_VISIBLE_DEVICES=${GPU_ID} python ./tools/train.py --dataset ${DATASET} --splitBy ${SPLITBY} --exp_id ${EXP_ID}
+sh train.sh
 ```
 
 ## Evaluation
@@ -28,7 +38,7 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./tools/train.py --dataset ${DATASET} --sp
 Evaluate ARN with ground-truth annotation:
 
 ```bash
-CUDA_VISIBLE_DEVICES=${GPU_ID} python ./tools/eval.py --dataset ${DATASET} --splitBy ${SPLITBY} --split ${SPLIT} --id ${EXP_ID}
+sh eval.sh
 ```
 
 

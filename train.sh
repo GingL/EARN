@@ -2,7 +2,7 @@
 CUDA_VISIBLE_DEVICES=0 python ./tools/train.py \
 --dataset refcoco \
 --splitBy unc \
---exp_id exp_time \
+--exp_id exp0 \
 --checkpoint_path output \
 --max_iters 50000 \
 --att_res_weight 1.0 \
