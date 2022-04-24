@@ -1,0 +1,43 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "train",
+            "type": "python",
+            "request": "launch",
+            "program": "tools/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataset",
+                "refcoco",
+                "--splitBy",
+                "unc",
+                "--split",
+                "val",
+                "--checkpoint_path",
+                "output",
+                "--max_iters",
+                "50000",
+                "--att_res_weight",
+                "1.0",
+                "--lang_res_weight",
+                "1.0",
+                "--vis_res_weight",
+                "0.01",
+                "--loss_combined",
+                "5.0",
+                "--loss_divided",
+                "1.0",
+                "--sub_filter_thr",
+                "0.2"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "cwd": "${workspaceFolder}"
+        },
+    ]
+}

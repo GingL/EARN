@@ -9,9 +9,28 @@ This repository is Pytorch implementation of Entity-enhanced Adaptive Reconstruc
 * Pytorch 0.4.1
 * CUDA 8.0
 
-## Data Prepare
+## Installation
 
-Download the images from [MSCOCO](http://mscoco.org/dataset/#overview). Prepare the refcoco/refcoco+/refcocog annotations following [REFER](https://github.com/lichengunc/refer) API. Follow Steps 1 in [MattNet](https://github.com/lichengunc/MAttNet) training to get the index of training and evaluation data.
+Please refer to [MattNet](https://github.com/lichengunc/MAttNet) to install [mask-faster-rcnn](https://github.com/lichengunc/mask-faster-rcnn), [REFER](https://github.com/lichengunc/refer) and [refer-parser2](https://github.com/lichengunc/refer-parser2).
+Follow Step 1 & 2 in Training to prepare the data and features.
+
+
+## Training
+
+Train EARN with ground-truth annotation:
+
+```bash
+CUDA_VISIBLE_DEVICES=${GPU_ID} python ./tools/train.py --dataset ${DATASET} --splitBy ${SPLITBY} --exp_id ${EXP_ID}
+```
+
+## Evaluation
+
+Evaluate ARN with ground-truth annotation:
+
+```bash
+CUDA_VISIBLE_DEVICES=${GPU_ID} python ./tools/eval.py --dataset ${DATASET} --splitBy ${SPLITBY} --split ${SPLIT} --id ${EXP_ID}
+```
+
 
 ## Evaluation for Complex Relational Reasoning of Referring Expression Grounding
 We gather the referring expressions with higher-order or multi-entity relationships (mainly based on the length of the referring expression and the number of entities) from the original RefCOCO, RefCOCO+ and RefCOCOg validation and test set to evaluate the ability of models to reason the complex relationship. You can download the validation set in [cache/prepro/](cache/prepro/). 

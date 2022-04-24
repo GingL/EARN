@@ -15,7 +15,7 @@ from pprint import pprint
 # model
 import _init_paths
 from loaders.data_loader import DataLoader
-from layers.model import KARN
+from layers.model import EARN
 import evals.utils as model_utils
 import evals.eval_easy as eval_utils
 from opt import parse_opt
@@ -37,12 +37,10 @@ def main(args):
     if not osp.isdir(checkpoint_dir):
         os.makedirs(checkpoint_dir)
 
-    # 使用TensroboardX可视化
+    # Tensorboard
     writer = SummaryWriter(osp.join(checkpoint_dir, 'log'))
 
     # set random seed
-    # seed()  用于指定随机数生成时所用算法开始的整数值，如果使用相同的seed()
-    # 值，则每次生成的随机数都相同，如果不设置这个值，则系统根据时间来自己选择这个值，此时每次生成的随机数因时间差异而不同。
     torch.manual_seed(opt['seed'])
     random.seed(opt['seed'])
 
@@ -69,7 +67,7 @@ def main(args):
     opt['pool5_dim'] = loader.pool5_dim
     opt['num_atts'] = loader.num_atts
 
-    model = KARN(opt)
+    model = EARN(opt)
 
     infos = {}
     if opt['start_from'] is not None:
@@ -122,7 +120,7 @@ def main(args):
 
         tic = time.time()
         scores, loss, _, _, _, _, _, _, _, _, _, _= model(Feats['pool5'], Feats['fc7'], Feats['lfeats'], Feats['dif_lfeats'], Feats['cxt_fc7'],
-                             Feats['cxt_lfeats'],Feats['dist'], labels, enc_labels, dec_labels, sub_sim, obj_sim, sub_emb, obj_emb, att_labels, select_ixs, att_weights)
+                             Feats['cxt_lfeats'], labels, enc_labels, dec_labels, sub_sim, obj_sim, sub_emb, obj_emb, att_labels, select_ixs, att_weights)
 
         loss.backward()
         model_utils.clip_gradient(optimizer, opt['grad_clip'])

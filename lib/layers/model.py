@@ -36,7 +36,7 @@ class RelationEncoder(nn.Module):
         self.lfeat_normalizer    = Normalize_Scale(5, opt['visual_init_norm'])
         self.fc = nn.Linear(opt['fc7_dim']+5, opt['jemb_dim'])
 
-    def forward(self, cxt_feats, cxt_lfeats, obj_attn, wo_obj_idx, dist):
+    def forward(self, cxt_feats, cxt_lfeats, obj_attn):
         # cxt_feats.shape = (ann_num,2048), cxt_lfeats=(ann_num,ann_num,5), obj_attn=(sent_num,ann_num),
         # dist=(ann_num,ann_num,1), wo_obj_idx.shape=(sent_num)
 
@@ -45,8 +45,7 @@ class RelationEncoder(nn.Module):
         batch = sent_num * ann_num
 
         # cxt_feats
-        cxt_feats = cxt_feats.unsqueeze(0).expand(sent_num, ann_num,
-                                                  self.fc7_dim)  # cxt_feats.shape = (sent_num，ann_num,2048)
+        cxt_feats = cxt_feats.unsqueeze(0).expand(sent_num, ann_num, self.fc7_dim)  # cxt_feats.shape = (sent_num，ann_num,2048)
         obj_attn = obj_attn.unsqueeze(1)  # obj_attn=(sent_num, 1, ann_num)
         cxt_feats = torch.bmm(obj_attn, cxt_feats)  # cxt_feats_fuse.shape = (sent_num，1,2048)
         cxt_feats = self.fc7_normalizer(cxt_feats.contiguous().view(sent_num, -1))
@@ -62,7 +61,7 @@ class RelationEncoder(nn.Module):
 
         cxt_feats_fuse = torch.cat([cxt_feats, cxt_lfeats], 2)
 
-        return cxt_feats_fuse, dist.squeeze(2)
+        return cxt_feats_fuse
 
 class Score(nn.Module):
     def __init__(self, vis_dim, lang_dim, jemb_dim):
@@ -107,9 +106,9 @@ class SimAttention(nn.Module):
         return sim_attn
 
 
-class KARN(nn.Module):
+class EARN(nn.Module):
     def __init__(self, opt):
-        super(KARN, self).__init__()
+        super(EARN, self).__init__()
         self.num_layers = opt['rnn_num_layers']
         self.hidden_size = opt['rnn_hidden_size']
         self.num_dirs = 2 if opt['bidirectional'] > 0 else 1
@@ -128,7 +127,6 @@ class KARN(nn.Module):
         self.loss_divided = opt['loss_divided']
         self.use_weight = opt['use_weight']
 
-        # language rnn encoder
         # language rnn encoder
         self.rnn_encoder = RNNEncoder(vocab_size=opt['vocab_size'],
                                       word_embedding_size=opt['word_embedding_size'],
@@ -179,14 +177,13 @@ class KARN(nn.Module):
             nn.Linear(self.fc7_dim + self.pool5_dim + 25 + 5 + self.fc7_dim + 5, opt['jemb_dim']))
 
 
-    def forward(self, pool5, fc7, lfeats, dif_lfeats, cxt_fc7, cxt_lfeats, dist, labels, enc_labels, dec_labels,
+    def forward(self, pool5, fc7, lfeats, dif_lfeats, cxt_fc7, cxt_lfeats, labels, enc_labels, dec_labels,
                 sub_sim, obj_sim, sub_emb, obj_emb, att_labels, select_ixs, att_weights):
 
         sent_num = pool5.size(0)
         ann_num =  pool5.size(1)
-        label_mask = (dec_labels != 0).float()
 
-        # 语言特征
+        # language feats
         context, hidden, embedded = self.rnn_encoder(labels) # (sent_num, 10, 1024), (sent_num, 1024), (sent_num, 10, 512)
 
         weights = F.softmax(self.weight_fc(hidden)) # (sent_num, 3)
@@ -200,11 +197,9 @@ class KARN(nn.Module):
         # subject attention
         sub_attn = self.sub_sim_attn(sub_emb, sub_feats)
         sub_loss = self.mse_loss(sub_attn, sub_sim)
-        # 高于阈值的内容
+        # subject filter
         sub_idx = sub_sim.gt(self.filter_thr)
-        # 判断是否会过滤掉全部的subject ann
         all_filterd_idx = (sub_idx.sum(1).eq(0))  # (sent_num)
-        # 如果全部过滤掉，则不进行过滤
         sub_idx[all_filterd_idx] = 1
         sub_filtered_idx = sub_idx.eq(0)
         sub_feats[sub_filtered_idx] = 0
@@ -220,9 +215,8 @@ class KARN(nn.Module):
         obj_attn[wo_obj_idx] = 0
         obj_loss = self.mse_loss(obj_attn, obj_sim)
         # object feats
-        rel_feats, dist = self.rel_encoder(cxt_fc7, cxt_lfeats, obj_attn, wo_obj_idx,
-                                                       dist)  # (sent_num, ann_num, 2048+5) (sent_num, ann_num)
-        dist = 100 / (dist + 100)
+        rel_feats = self.rel_encoder(cxt_fc7, cxt_lfeats, obj_attn)  # (sent_num, ann_num, 2048+5) (sent_num, ann_num)
+        # dist = 100 / (dist + 100)
 
         sub_ann_attn = self.sub_score(sub_feats, sub_phrase_emb)  # (sent_num, ann_num, 1)
         loc_ann_attn = self.loc_score(loc_feats, loc_phrase_emb)  # (sent_num, ann_num, 1)
@@ -230,16 +224,13 @@ class KARN(nn.Module):
 
         weights_expand = weights.unsqueeze(1).expand(sent_num, ann_num, 3)
         total_ann_score = (weights_expand * torch.cat([sub_ann_attn, loc_ann_attn, rel_ann_attn], 2)).sum(2)  # (sent_num, ann_num)
-        # if self.dist_pel > 0:
-        #     total_ann_score = total_ann_score * dist
+
 
         sub_phrase_recons = self.sub_decoder(sub_feats, total_ann_score)  # (sent_num, 512)
         loc_phrase_recons = self.loc_decoder(loc_feats, total_ann_score)  # (sent_num, 512)
         rel_phrase_recons = self.rel_decoder(rel_feats, total_ann_score)  # (sent_num, 512)
 
         loss = 0
-
-        # 第一次输出时，发现vis_res_loss=133.2017, att_res_loss = 4.3362, lan_rec_loss = 7.6249
         if self.vis_res_weight > 0:
             vis_res_loss = self.vis_res_loss(sub_phrase_emb, sub_phrase_recons, loc_phrase_emb,
                                              loc_phrase_recons, rel_phrase_emb, rel_phrase_recons, weights)

@@ -94,7 +94,7 @@ def eval_split(loader, model, split, opt):
             # if i ==2:
             #     print('2')
             scores, loss, sub_idx, sub_attn, obj_attn, weights, sub_attn_lan, loc_attn_lan, rel_attn_lan, sub_ann_attn, loc_ann_attn, rel_ann_attn = model(pool5, fc7, lfeats, dif_lfeats, cxt_fc7,
-                                 cxt_lfeats, dist, label, enc_label, dec_label, sub_sim, obj_sim,
+                                 cxt_lfeats, label, enc_label, dec_label, sub_sim, obj_sim,
                                  sub_emb, obj_emb, att_label, select_ix, att_weights)
 
 

@@ -122,7 +122,7 @@ class RelationDecoder(nn.Module):
         self.word_vec_size = opt['word_vec_size']
         self.fc7_dim = opt['fc7_dim']
         # self.mlp = nn.Sequential(nn.Linear(self.jemb_dim, self.jemb_dim))
-        self.mlp = nn.Sequential(nn.Linear(self.fc7_dim + 5 +5, self.jemb_dim))
+        self.mlp = nn.Sequential(nn.Linear(self.fc7_dim + 5, self.jemb_dim))
 
     def forward(self, rel_feats, total_ann_score):
         total_ann_score = total_ann_score.unsqueeze(1)  # (sent_num, 1, ann_num)
