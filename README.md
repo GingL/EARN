@@ -47,11 +47,11 @@ We gather the referring expressions with higher-order or multi-entity relationsh
 
 1) Examples.
    
-   There are some examples for referring expressions with higher-order or multi-entity relationships. More examples can be seen in [visualization.ipynb](visualization.ipynb). 
+   The examples for referring expressions with higher-order or multi-entity relationships can be seen in [visualization.ipynb](visualization.ipynb). 
    
- ![example1](./pics/example1.png)
+ <!-- ![example1](./pics/example1.png)
  ![example2](./pics/example2.png)
- ![example3](./pics/example3.png)
+ ![example3](./pics/example3.png) -->
 <!-- <center>Some examples of the validation set with complex relationship.</center> -->
 
 
